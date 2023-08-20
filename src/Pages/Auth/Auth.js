@@ -1,16 +1,15 @@
 import axios from "axios";
-import React, { useRef, useState } from "react";
-import classes from "./Auth.css";
-
+import React, { useContext, useRef, useState } from "react";
+import classes from "./Auth.module.css";
+import ExpenseContext from "../../store/expense-context";
 import { useHistory } from "react-router-dom";
-
 const Auth = () => {
   const [isLogin, setIsLogin] = useState(true);
   const enteredEmailRef = useRef();
   const enteredPassRef = useRef();
   const enteredConfPassRef = useRef();
   const history = useHistory();
-
+  const expctx = useContext(ExpenseContext);
   const toggleAuthHandler = (event) => {
     event.preventDefault();
     setIsLogin(!isLogin);
@@ -33,15 +32,15 @@ const Auth = () => {
 
       if (isLogin) {
         let res = await axios.post(
-          "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyD9IHVJXmO199ELEojC5tmtnsW91qJmN8g",
+          "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key= AIzaSyD9IHVJXmO199ELEojC5tmtnsW91qJmN8g ",
           authObj,
           {
             headers: { "Content-Type": "application/json" },
           }
         );
         try {
-          history.replace('/welcome');
-          localStorage.setItem('ExpenseToken', res.data.idToken);
+          expctx.getExpenseToken(res.data.idToken);
+          history.replace("/welcome");
           enteredEmailRef.current.value = "";
           enteredPassRef.current.value = "";
         } catch (err) {
@@ -55,7 +54,7 @@ const Auth = () => {
         ) {
           alert("All fields are mandatory");
         } else if (enteredPass !== enteredConfPass) {
-          alert("Passwords do not match");
+          alert("password doesnot match");
         } else if (
           enteredPass === enteredConfPass &&
           enteredEmail.trim().length > 0 &&
@@ -63,7 +62,7 @@ const Auth = () => {
           enteredConfPass.trim().length > 0
         ) {
           let res = await axios.post(
-            "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyD9IHVJXmO199ELEojC5tmtnsW91qJmN8g",
+            "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key= AIzaSyD9IHVJXmO199ELEojC5tmtnsW91qJmN8g ",
             authObj,
             {
               headers: { "Content-Type": "application/json" },
@@ -87,53 +86,31 @@ const Auth = () => {
   return (
     <React.Fragment>
       <form className={classes.form}>
-        <h2 className={classes.header}>{isLogin ? "Login" : "Sign Up"}</h2>
-        <label htmlFor="mail" className={classes.label}>
-          EMail
-        </label>
-        <input
-          ref={enteredEmailRef}
-          type="email"
-          id="mail"
-          required
-          className={classes.input}
-        ></input>
-        <label htmlFor="password_" className={classes.label}>
-          Password
-        </label>
+        <h2>{isLogin ? "Login" : "Sign Up"}</h2>
+        <label htmlFor="mail">EMail</label>
+        <input ref={enteredEmailRef} type="email" id="mail" required></input>
+        <label htmlFor="password_">Password</label>
         <input
           ref={enteredPassRef}
           type="password"
           id="password_"
           required
-          className={classes.input}
         ></input>
+        {!isLogin && <label htmlFor="confirmpass">Confirm Password</label>}
         {!isLogin && (
-          <React.Fragment>
-            <label htmlFor="confirmpass" className={classes.label}>
-              Confirm Password
-            </label>
-            <input
-              ref={enteredConfPassRef}
-              type="password"
-              id="confirmpass"
-              required
-              className={classes.input}
-            ></input>
-          </React.Fragment>
+          <input
+            ref={enteredConfPassRef}
+            type="password"
+            id="confirmpass"
+            required
+          ></input>
         )}
-        <button onClick={submitHandler} className={classes.button}>
-          {isLogin ? "Login" : "Sign Up"}
-        </button>
-        <button
-          onClick={toggleAuthHandler}
-          className={`${classes.button} ${classes.toggleButton}`}
-        >
-          {isLogin ? "Create new account" : "Already have an account?"}
+        <button onClick={submitHandler}>{isLogin ? "Login" : "Sign Up"}</button>
+        <button onClick={toggleAuthHandler} className={classes.toggleButton}>
+          {isLogin ? "Create new account" : "Already have account?"}
         </button>
       </form>
     </React.Fragment>
   );
 };
-
 export default Auth;
