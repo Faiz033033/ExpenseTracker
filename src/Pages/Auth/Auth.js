@@ -32,7 +32,7 @@ const Auth = () => {
 
       if (isLogin) {
         let res = await axios.post(
-          "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key= AIzaSyD9IHVJXmO199ELEojC5tmtnsW91qJmN8g ",
+          "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key= AIzaSyD9IHVJXmO199ELEojC5tmtnsW91qJmN8g",
           authObj,
           {
             headers: { "Content-Type": "application/json" },
@@ -62,7 +62,7 @@ const Auth = () => {
           enteredConfPass.trim().length > 0
         ) {
           let res = await axios.post(
-            "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key= AIzaSyD9IHVJXmO199ELEojC5tmtnsW91qJmN8g ",
+            "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key= AIzaSyD9IHVJXmO199ELEojC5tmtnsW91qJmN8g",
             authObj,
             {
               headers: { "Content-Type": "application/json" },

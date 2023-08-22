@@ -1,15 +1,15 @@
 import React from "react";
-import './Header.css';
-
-const Header = () => {
-  return (
-    <div className="Header_Bar">
-      <div className="Header">
-        <div className="Home_Tab">Home</div>
-        <div className="About_Tab">About</div>
-      </div>
-    </div>
-  );
-};
-
+import classes from './Header.css'
+const Header=()=>
+{
+    return(<React.Fragment>
+        <header className={classes.header}>
+            <ul>
+                <li><p>Home</p></li>
+                <li><p>Product</p></li>
+                <li><p>About Us</p></li>
+            </ul>
+        </header>
+    </React.Fragment>)
+}
 export default Header;

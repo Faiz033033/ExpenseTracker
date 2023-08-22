@@ -15,7 +15,7 @@ const Contact =()=>
         async function getData() {
           try {
             const res = await axios.post(
-              "https://identitytoolkit.googleapis.com/v1/accounts:lookup?key= AIzaSyD9IHVJXmO199ELEojC5tmtnsW91qJmN8g",
+              "https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyCSqjiKRacE_Kq1VBbV-oRPsKmxAsCULHY",
               tokenObj,
               {
                 headers: { "Content-Type": "application/json" },
@@ -28,7 +28,10 @@ const Contact =()=>
                 expctx.userDetails({name:details.displayName,url:details.photoUrl})
                 if(details.displayName && details.photoUrl )
                 {
-                    setContactPage(false)
+                  setContactPage(false)
+                }
+                else{
+                  setContactPage(true)
                 }
         
             } catch (err) {
@@ -39,7 +42,7 @@ const Contact =()=>
           }
         }
         getData();
-      }, [tokenObj,expctx]);
+      }, []);
 
       const editButtonhandler=()=>
       {
@@ -48,8 +51,8 @@ const Contact =()=>
 
 
     return(<React.Fragment>
-      {contactPage && <ContactDetails  />}
-      { !contactPage && <SavedContact editButton={editButtonhandler} />}
+      {contactPage===true && <ContactDetails  />}
+      { contactPage===false && <SavedContact editButton={editButtonhandler} />}
     </React.Fragment>)
 }
 export default Contact

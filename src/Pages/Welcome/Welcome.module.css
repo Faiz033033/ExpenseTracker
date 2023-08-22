@@ -1,24 +1,18 @@
-.main {
+.heading{
+  font-size: larger;
+  font-family: none;
+  padding: 1%;
+}
+.main{
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  background-color: #f5f5f5;
+  align-items: baseline;
+  justify-content: space-between;
 }
 
-.heading {
-  font-size: 2rem;
-  margin-bottom: 20px;
-  color: #333;
+.main div{
+  margin-right: 3%;
 }
 
-.link {
+.link{
   color: rgb(64, 226, 43);
-  text-decoration: none;
-  margin-left: 5px;
-}
-
-.link:hover {
-  text-decoration: underline;
 }
