@@ -3,6 +3,8 @@ import React, { useContext, useRef, useState } from "react";
 import classes from "./Auth.module.css";
 import ExpenseContext from "../../store/expense-context";
 import { useHistory } from "react-router-dom";
+import { Route } from "react-router-dom";
+import ForgetPassword from "./ForgetPassword";
 const Auth = () => {
   const [isLogin, setIsLogin] = useState(true);
   const enteredEmailRef = useRef();
@@ -32,7 +34,7 @@ const Auth = () => {
 
       if (isLogin) {
         let res = await axios.post(
-          "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key= AIzaSyD9IHVJXmO199ELEojC5tmtnsW91qJmN8g",
+          "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCSqjiKRacE_Kq1VBbV-oRPsKmxAsCULHY",
           authObj,
           {
             headers: { "Content-Type": "application/json" },
@@ -62,7 +64,7 @@ const Auth = () => {
           enteredConfPass.trim().length > 0
         ) {
           let res = await axios.post(
-            "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key= AIzaSyD9IHVJXmO199ELEojC5tmtnsW91qJmN8g",
+            "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCSqjiKRacE_Kq1VBbV-oRPsKmxAsCULHY",
             authObj,
             {
               headers: { "Content-Type": "application/json" },
@@ -82,6 +84,15 @@ const Auth = () => {
       console.log(err.message);
     }
   };
+
+  const forgetpasswordhandler=(event)=>
+  {
+    event.preventDefault();
+    history.push('/forget_pass')
+  }
+  <Route path='/forget_pass'>
+          <ForgetPassword/>
+        </Route>
 
   return (
     <React.Fragment>
@@ -106,6 +117,7 @@ const Auth = () => {
           ></input>
         )}
         <button onClick={submitHandler}>{isLogin ? "Login" : "Sign Up"}</button>
+        {isLogin && <button onClick={forgetpasswordhandler} className={classes.toggleButton} >Forget Your Password? </button>}
         <button onClick={toggleAuthHandler} className={classes.toggleButton}>
           {isLogin ? "Create new account" : "Already have account?"}
         </button>
