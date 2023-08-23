@@ -1,11 +1,9 @@
-/* header.css */
-
-.header {
-  color: white; 
+.header{
+  color: rgb(204, 66, 66);
   background-color: black;
 }
 
-.header ul {
+.header ul{
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -13,15 +11,23 @@
   margin: 0;
 }
 
-.header ul li {
+.header ul li{
   font-weight: bold;
 }
 
-.logout_button {
-  margin-top: 20px; 
+.logout_button{
+  margin-top: 16%;
   height: 30px;
   border: 1px solid #f7f7f7;
   color: white;
   background-color: black;
   border-radius: 14px;
+}
+
+.expense{
+  margin-top: 1%;
+}
+
+.expense_link{
+  color: red;
 }
