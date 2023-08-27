@@ -9,6 +9,7 @@ import VerifyLinkSend from "./Pages/Auth/VerifyLinkSend";
 import ForgetPassword from "./Pages/Auth/ForgetPassword";
 import ExpenseContext from "./store/expense-context";
 import ExpensesForm from "./Pages/Expenses/ExpensesForm";
+import "./App.css";
 function App() {
   const expctx=useContext(ExpenseContext)
   return (

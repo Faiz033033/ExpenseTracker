@@ -1,11 +1,10 @@
-import axios from "axios";
 import React, { useContext } from "react";
 import ExpenseContext from "../../store/expense-context";
 import { useHistory } from "react-router-dom";
 import classes from "./VerifyEmail.module.css";
 import useHttp from "../../hook/useHttp";
 const VerifyEmail = () => {
-  const { error, postRequest } = useHttp();
+  const { error, sendRequest } = useHttp();
   const expctx = useContext(ExpenseContext);
   const history = useHistory();
   const verifyMailHandler = async (event) => {
@@ -20,9 +19,10 @@ const VerifyEmail = () => {
         history.push("/linksend");
       };
 
-      postRequest(
+      sendRequest(
         {
-          url: "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCod?key=AIzaSyD9IHVJXmO199ELEojC5tmtnsW91qJmN8g",
+          request:'post',
+          url: "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyD9IHVJXmO199ELEojC5tmtnsW91qJmN8g",
           body: verifyObj,
           header: { "Content-Type": "X-Firebase-Locale" },
         },
