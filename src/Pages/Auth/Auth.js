@@ -1,18 +1,21 @@
-import React, { useContext, useRef, useState } from "react";
+import React, {  useRef, useState } from "react";
 import classes from "./Auth.module.css";
-import ExpenseContext from "../../store/expense-context";
 import { useHistory } from "react-router-dom";
 import { Route } from "react-router-dom";
 import ForgetPassword from "./ForgetPassword";
 import useHttp from "../../hook/useHttp";
+import { useDispatch } from "react-redux";
+import { authAction } from "../../store/auth-reducer";
+
+
 const Auth = () => {
   const [isLogin, setIsLogin] = useState(true);
   const enteredEmailRef = useRef();
   const enteredPassRef = useRef();
   const enteredConfPassRef = useRef();
   const history = useHistory();
-  const expctx = useContext(ExpenseContext);
   const { error, sendRequest } = useHttp();
+  const dispatch=useDispatch()
   const toggleAuthHandler = (event) => {
     event.preventDefault();
     setIsLogin(!isLogin);
@@ -35,7 +38,8 @@ const Auth = () => {
 
       if (isLogin) {
         const resData = (res) => {
-          expctx.getExpenseToken(res.data.idToken);
+          dispatch(authAction.getExpenseToken(res.data.idToken))
+          dispatch(authAction.setUserEmail(enteredEmail))
           history.replace("/welcome");
           enteredEmailRef.current.value = "";
           enteredPassRef.current.value = "";
@@ -44,7 +48,7 @@ const Auth = () => {
         sendRequest(
           {
             request: "post",
-            url: "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyD9IHVJXmO199ELEojC5tmtnsW91qJmN8g",
+            url: "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCSqjiKRacE_Kq1VBbV-oRPsKmxAsCULHY",
             body: authObj,
             header: { "Content-Type": "application/json" },
           },
@@ -77,7 +81,7 @@ const Auth = () => {
           sendRequest(
             {
               request: "post",
-              url: "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyD9IHVJXmO199ELEojC5tmtnsW91qJmN8g ",
+              url: "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCSqjiKRacE_Kq1VBbV-oRPsKmxAsCULHY",
               body: authObj,
               header: { "Content-Type": "application/json" },
             },

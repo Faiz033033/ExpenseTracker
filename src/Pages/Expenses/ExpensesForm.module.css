@@ -17,4 +17,27 @@
 .error_heading{
     display: flex;
     justify-content: center;
+    margin-top: 69px;
+}
+
+.submit_button:hover
+{
+    background-color: blue;
+}
+
+.premium_button{
+    border-color: transparent;
+    font-weight: 700;
+    padding: 2%;
+    margin: auto;
+    margin-top: 5%;
+    font-size: 17px;
+    background-color: transparent;
+    border-radius: 8px;
+    width: auto;
+    margin: auto;
+}
+
+.anchor{
+    margin: auto;
 }

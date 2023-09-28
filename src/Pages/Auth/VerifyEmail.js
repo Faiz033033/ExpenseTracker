@@ -1,18 +1,18 @@
-import React, { useContext } from "react";
-import ExpenseContext from "../../store/expense-context";
+import React from "react";
 import { useHistory } from "react-router-dom";
 import classes from "./VerifyEmail.module.css";
 import useHttp from "../../hook/useHttp";
+import { useSelector } from "react-redux";
 const VerifyEmail = () => {
   const { error, sendRequest } = useHttp();
-  const expctx = useContext(ExpenseContext);
+  const token=useSelector(state=>state.auth.token)
   const history = useHistory();
   const verifyMailHandler = async (event) => {
     event.preventDefault();
     try {
       const verifyObj = {
         requestType: "VERIFY_EMAIL",
-        idToken: expctx.ExpenseToken,
+        idToken: token,
       };
 
       const resData = () => {
@@ -22,7 +22,7 @@ const VerifyEmail = () => {
       sendRequest(
         {
           request:'post',
-          url: "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyD9IHVJXmO199ELEojC5tmtnsW91qJmN8g",
+          url: "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyCSqjiKRacE_Kq1VBbV-oRPsKmxAsCULHY",
           body: verifyObj,
           header: { "Content-Type": "X-Firebase-Locale" },
         },

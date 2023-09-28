@@ -1,22 +1,28 @@
-.header{
+.header {
   color: rgb(204, 66, 66);
   background-color: black;
+  z-index: 10;
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 
-.header ul{
+
+.header ul {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   list-style-type: none;
   margin: 0;
+  padding: 10px;
 }
 
-.header ul li{
+.header ul li {
   font-weight: bold;
 }
 
-.logout_button{
-  margin-top: 16%;
+.logout_button {
+ 
   height: 30px;
   border: 1px solid #f7f7f7;
   color: white;
@@ -24,10 +30,21 @@
   border-radius: 14px;
 }
 
-.expense{
+.expense {
   margin-top: 1%;
 }
 
-.expense_link{
-  color: red;
+.expense_link {
+  color: brown;
+  text-decoration: none;
 }
+
+.expense_active {
+  color: green;
+}
+
+.logout_button:hover {
+  background-color: rgb(221, 10, 10);
+}
+
+

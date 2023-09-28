@@ -42,3 +42,11 @@
     background-color: rgba(255, 0, 0, 0.801);
     border-radius: 5px;
 }
+
+.edit_button:hover{
+    background-color: green;
+}
+
+.delete_button:hover{
+    background-color: red;
+}
