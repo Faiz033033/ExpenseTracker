@@ -34,7 +34,7 @@ const ExpensesForm = () => {
     sendRequest(
       {
         request: "get",
-        url: `https://react-expense-tracker-8cc99-default-rtdb.firebaseio.com/${userMail}.json`,
+        url:`https://expensetracker.firebaseio.com/user@example.com.json`,
         header: { "Content-Type": "application/json " },
       },
       resData
@@ -58,7 +58,7 @@ const ExpensesForm = () => {
     sendRequest(
       {
         request: "delete",
-        url: `https://react-expense-tracker-8cc99-default-rtdb.firebaseio.com/${userMail}/${data}.json`,
+        url: `https://expensetracker.firebaseio.com/user@example.com.json`,
         header: { "Content-Type": "application/json " },
       },
       resData
@@ -94,7 +94,7 @@ const ExpensesForm = () => {
         sendRequest(
           {
             request: "post",
-            url: `https://react-expense-tracker-8cc99-default-rtdb.firebaseio.com/${userMail}.json`,
+            url: `https://expensetracker.firebaseio.com/user@example.com.json`,
             body: expenseObj,
             header: { "Content-Type": "application/json " },
           },
@@ -110,7 +110,7 @@ const ExpensesForm = () => {
         sendRequest(
           {
             request: "put",
-            url: `https://react-expense-tracker-8cc99-default-rtdb.firebaseio.com/${userMail}/${isEditId}.json`,
+            url: `https://expensetracker.firebaseio.com/user@example.com.json`,
             body: expenseObj,
             header: { "Content-Type": "application/json " },
           },

@@ -17,7 +17,7 @@ const Contact =()=>
         async function getData() {
           try {
             const res = await axios.post(
-              "https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyCSqjiKRacE_Kq1VBbV-oRPsKmxAsCULHY",
+              "https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyD9IHVJXmO199ELEojC5tmtnsW91qJmN8g",
               tokenObj,
               {
                 headers: { "Content-Type": "application/json" },

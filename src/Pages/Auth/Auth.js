@@ -48,7 +48,7 @@ const Auth = () => {
         sendRequest(
           {
             request: "post",
-            url: "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCSqjiKRacE_Kq1VBbV-oRPsKmxAsCULHY",
+            url: "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyD9IHVJXmO199ELEojC5tmtnsW91qJmN8g",
             body: authObj,
             header: { "Content-Type": "application/json" },
           },
@@ -81,7 +81,7 @@ const Auth = () => {
           sendRequest(
             {
               request: "post",
-              url: "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCSqjiKRacE_Kq1VBbV-oRPsKmxAsCULHY",
+              url: "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyD9IHVJXmO199ELEojC5tmtnsW91qJmN8g",
               body: authObj,
               header: { "Content-Type": "application/json" },
             },
